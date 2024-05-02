@@ -8,7 +8,7 @@ __license__ = "GPL"
 __version__ = "1.0.0"
 __maintainer__ = "Cedric Chauve"
 __email__ = "cedric.chauve@sfu.ca"
-__status__ = "Development"
+__status__ = "Release"
 
 from bisect import bisect_left
 
