@@ -10,21 +10,6 @@ __maintainer__ = "Cedric Chauve"
 __email__ = "cedric.chauve@sfu.ca"
 __status__ = "Release"
 
-"""
-TreeVector program for manipulating rooted trees representations as vectors
-"""
-
-__author__ = "Cedric Chauve"
-__credits__ = ["Cedric Chauve", "Louxin Zhang"]
-__license__ = "GPL"
-__version__ = "0.99"
-__maintainer__ = "Cedric Chauve"
-__email__ = "cedric.chauve@sfu.ca"
-__status__ = "Development"
-
-import sys
-import os
-import argparse
 from ete3 import Tree
 from LIS import LIS_len, LIS_seq
 
