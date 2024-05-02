@@ -12,6 +12,8 @@ __status__ = "Release"
 
 from ete3 import Tree
 from LIS import LIS_len, LIS_seq
+from numpy import random
+import numpy as np
 
 # Separator between a label and a node name in a tree representation
 SEP_NODE = ":"
@@ -553,6 +555,20 @@ def read_leaves_order_file(in_leaves_order_file, sep=SEP_ORDER):
     leaf2idx,idx2leaf = str2order(line, sep=sep)
     return leaf2idx,idx2leaf
 
+def random_leaves_order(in_TreeVec_file, nb_orders=1, out_file_prefix="leaves_order"):
+    """
+    Generates nb_orders random leaves orders and write them in files 
+    {out_prefix_file}_{nb order}.txt
+    """
+    _,_,idx2leaf = __read_TreeVec_file(in_TreeVec_file)
+    nb_leaves = len(idx2leaf.keys())
+    idx = np.array(list(idx2leaf.values()))
+    for i in range(1,nb_orders+1):
+        random.shuffle(idx)
+        _idx2leaf = {j: idx[j-1] for j in range(1,nb_leaves+1)}
+        with open(f"{out_file_prefix}_{i}.txt", "w") as out_file:
+            out_file.write(f"{order2str(_idx2leaf)}\n")
+        
 # Converting between Newick and TreeVec
 
 def __read_file(input_file):
@@ -578,7 +594,7 @@ def __read_TreeVec_file(in_TreeVec_file):
                 treevec_str=TreeVec_tree, idx2leaf=idx2leaf, format=1, compact=True
             )
         )
-    return TreeVec_trees[1:].leaf2idx,idx2leaf
+    return TreeVec_trees[1:],leaf2idx,idx2leaf
 
 def __write_file(in_lines, output_file):
     """
