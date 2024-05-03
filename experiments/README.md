@@ -2,7 +2,7 @@
 
 ## Experiment 1
 
-Generating 1000 random trees on 100 taxa and comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
+From 1000 random trees on 100 taxa, comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
 
 ```
 python experiments.py exp1 > exp1_results.txt
@@ -10,7 +10,7 @@ python experiments.py exp1 > exp1_results.txt
 
 ## Experiment 2
 
-Generating 50 random trees on 100 taxa, adding hop trees beween them, and comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped. 9 random orders plus the identity permutation are considered.
+From 50 random trees on 100 taxa, adding hop trees beween them, and comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped. 9 random orders plus the identity permutation are considered.
 
 ```
 python experiments.py exp2 > exp2_results.txt
@@ -18,7 +18,7 @@ python experiments.py exp2 > exp2_results.txt
 
 ## Experiment 3
 
-Computing size neighbourhoods
+Computing size neighbourhoods for 1000 random trees on 100 taxa.
 
 ```
 python experiments.py exp3
@@ -26,9 +26,9 @@ python experiments.py exp3
 
 ## Experiment 4
 
-Comparing RF and LCS distances on trees with known SPR distance from a starting tree.
-We consider 50 starting trees, each of 100 taxa, and for each we build a sequence of trees by doing SPR, from 5 SPR to 100 SPR by steps of 5.
-We compue the RF distance and the LCS distance, for 9 random orders plus the permutation identity.
+Comparing RF and HOP distances on trees with known SPR distance from a starting tree.
+We consider 50 starting trees, each of 100 taxa, and for each we build a sequence of trees by doing random SPRs, from 5 SPRs to 100 SPRs by steps of 5.
+We compute the RF distance and the HOP distance, for 10 random orders.
 
 ```
 python experiments.py exp4
