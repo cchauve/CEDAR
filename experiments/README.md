@@ -18,11 +18,11 @@ python experiments.py exp2 > exp2_results.txt
 
 ## Experiment 3
 
+Computing size neighbourhoods
+
 ```
 python experiments.py exp3
 ```
-
-Computing size neighbourhoods
 
 ## Experiment 4
 
