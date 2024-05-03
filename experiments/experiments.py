@@ -104,7 +104,7 @@ def experiment3():
     """
 
     in_TreeVec_file = "random.trees.1000.vec"
-    out_size_file = "exp3_random.trees.1000.ngb.txt"
+    out_size_file = "exp3_results.txt"
 
     print(f"EXP3\tComputing hop neighbourhood size in file {out_size_file}")
     hop_neighbourhood_size(in_TreeVec_file, out_size_file)
@@ -202,10 +202,18 @@ def experiment4():
     print(f"EXP4\tComputing LCS distance")
     LCS_files = __exp4_compute_LCS(out_Newick_files)
     print(f"EXP4\tAggregating results")
-    out_dist_file = "exp4_dist.csv"
+    out_dist_file = "exp4_results.txt"
     __exp4_aggregate_results(RF, LCS_files, out_dist_file, 5, 100)
 
-experiment1()
-experiment2()
-experiment3()
-experiment4()
+
+if __name__ == "__main__":
+    experiment = sys.argv[1]
+
+    if experiment == "exp1":
+        experiment1()
+    elif experiment == "exp2":
+        experiment2()
+    elif experiment == "exp3":
+        experiment3()
+    elif experiment == "exp4":
+        experiment4()
