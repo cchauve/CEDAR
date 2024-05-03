@@ -1,11 +1,11 @@
 EXP2	Computing hop similarity in file exp2_random.trees.50.sim.txt
 EXP2	Computing hop paths in file exp2_random.trees.50.path.vec
 EXP2	Converting exp2_random.trees.50.path.vec into exp2_random.trees.50.path.nwk
-EXP2	Uncompressed Newick file exp2_random.trees.50.path.nwk:   	11383066 Bytes
-EXP2	Uncompressed TreeVec file exp2_random.trees.50.path.vec: 	11490706 Bytes
-EXP2	Space usage ratio:	1.009
+EXP2	Uncompressed Newick file exp2_random.trees.50.path.nwk:   	11378180 Bytes
+EXP2	Uncompressed TreeVec file exp2_random.trees.50.path.vec: 	11029628 Bytes
+EXP2	Space usage ratio:	0.969
 EXP2	Compressing exp2_random.trees.50.path.nwk into exp2_random.trees.50.path.nwk.gz
 EXP2	Compressing exp2_random.trees.50.path.vec into exp2_random.trees.50.path.vec.gz
-EXP2	Compressed Newick file exp2_random.trees.50.path.nwk.gz:     	217170 Bytes
-EXP2	Compressed TreeVec file exp2_random.trees.50.path.vec.gz:  	213323 Bytes
-EXP2	Space usage ratio:	0.982
+EXP2	Compressed Newick file exp2_random.trees.50.path.nwk.gz:     	217110 Bytes
+EXP2	Compressed TreeVec file exp2_random.trees.50.path.vec.gz:  	209796 Bytes
+EXP2	Space usage ratio:	0.966
