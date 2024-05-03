@@ -621,7 +621,7 @@ def convert_Newick2TreeVec(in_Newick_file, out_TreeVec_file, leaves_order_file=N
     in_Newick_trees = __read_file(in_Newick_file)
     # Determining the leaves order if provided
     if leaves_order_file is not None:
-        leaf2idx,idx2leaf = read_leaves_order_file()
+        leaf2idx,idx2leaf = read_leaves_order_file(leaves_order_file)
     else:
         leaf2idx,idx2leaf = None,None
     # Converting trees

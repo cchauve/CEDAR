@@ -91,33 +91,3 @@ def random_spr(t):
             return nb_tries
         else:
             nb_tries += 1
-        
-
-
-# #t = Tree('((((H:1.0,K:1.0)D:1.0,(F:1.0,I:1.0)G:1.0)B:1.0,E:1.0)A:1.0,((L:1.0,(N:1.0,Q:1.0)O:1.0)J:1.0,(P:1.0,S:1.0)M:1.0)C:1.0)X;', format=1)
-
-# def print_tree(t):
-#     print(t.get_ascii(show_internal=True, attributes=["dist","name"]))
-
-# x_random = True
-            
-# if not x_random:
-#     print_tree(t)
-#     spr_inplace(t, "N", "S")
-#     print_tree(t)
-#     spr_inplace(t, "M", "F")
-#     print_tree(t)
-#     spr_inplace(t, "A", "S")
-#     print_tree(t)
-#     spr_inplace(t, "J", "M")
-#     print_tree(t)
-#     a,b = "Q","X"
-#     if check_spr(t, a, b):
-#         spr_inplace(t, a, b)
-#     else:
-#         print(f"SPR {b} pruned and regrafted above {a} invalid")
-# else:
-#     for i in range(0,5):
-#         nb_tries = random_spr(t)
-#         print(f"{nb_tries} tries")
-#         print_tree(t)

@@ -109,6 +109,56 @@ def experiment3():
     print(f"EXP3\tComputing hop neighbourhood size in file {out_size_file}")
     hop_neighbourhood_size(in_TreeVec_file, out_size_file)
 
+
+def __exp4_compute_SPR(in_Newick_file, out_prefix):
+    out_dict = {}
+    with open(in_Newick_file) as in_file:
+        i = 1
+        for Newick_str in in_file.readlines():
+            out_Newick_file = os.path.join("exp4", f"{out_prefix}.{i}.nwk")
+            out_dict[i] = out_Newick_file
+            out_Newick_trees = [Newick_str.rstrip()]
+            tree = Tree(Newick_str.rstrip(), format=1)
+            p = 1
+            for node in tree.traverse("postorder"):
+                if not node.is_leaf():
+                    node.name = str(p)
+                    p += 1
+            for j in range(5,101,5):
+                for k in range(0,5):
+                    nb_tries = random_spr(tree)
+                out_Newick_trees.append(tree.write(format=1))
+            with open(out_Newick_file, "w") as out_file:
+                for tree_str in out_Newick_trees:
+                    out_file.write(f"{tree_str}\n")
+            i += 1
+    return out_dict
+
+def __exp4_compute_RF(in_Newick_file):
+    out_RF = []
+    Newick_trees = []
+    with open(in_Newick_file) as in_file:
+        for Newick_str in in_file.readlines():
+            Newick_trees.append(Tree(Newick_str.rstrip(), format=1))
+    tree1 = Newick_trees[0]
+    for tree2 in Newick_trees[1:]:
+        [rf,max_rf] = tree1.robinson_foulds(tree2)[0:2]
+        out_RF.append([rf,max_rf])
+    return out_RF
+
+def __exp4_compute_LCS(out_Newick_files):
+    LCS_files = {}
+    for i,out_Newick_file in out_Newick_files.items():
+        LCS_files[i] = {}
+        for j in range(1,11):
+            order_file = os.path.join("exp4", f"order_{j}.txt")
+            out_TreeVec_file = out_Newick_file.replace(".nwk",f".{j}.vec")
+            convert_Newick2TreeVec(out_Newick_file, out_TreeVec_file, leaves_order_file=order_file)
+            out_dist_file = f"{out_TreeVec_file}.dist"
+            LCS_files[i][j] = out_dist_file
+            hop_similarity(out_TreeVec_file, out_dist_file, mode="first")
+    return LCS_files
+    
 def experiment4():
     """
     Comparing RF and LCS distances on trees with known SPR distance from a starting tree.
@@ -117,29 +167,22 @@ def experiment4():
     We compute the RF distance and the LCS distance, for 10 random leaves orders.
     """
     in_Newick_file = "random.trees.50.nwk"
+    in_TreeVec_file = "random.trees.50.vec"
 
     print(f"EXP4\tComputing SPR trees")
-    with open(in_Newick_file) as in_file:
-        i = 1
-        for Newick_str in in_file.readlines():
-            out_Newick_file = os.path.join("exp4", f"random.trees.50.spr.{i}.nwk")
-            out_Newick_trees = [Newick_str]
-            tree = Tree(Newick_str, format=1)
-            p = 1
-            for node in tree.traverse("postorder"):
-                if not node.is_leaf():
-                    node.name = str(p)
-                    p += 1
-            for j in range(5,100,5):
-                for k in range(0,5):
-                    nb_tries = random_spr(tree)
-                out_Newick_trees.append(tree.write(format=1))
-            with open(out_Newick_file, "w") as out_file:
-                for tree_str in out_Newick_trees:
-                    out_file.write(f"{tree_str}\n")
-            i += 1
-    
-                                        
+    out_Newick_files = __exp4_compute_SPR(in_Newick_file, "random.trees.50.spr")
+    print(f"EXP4\tComputing RF distance")
+    RF = {}
+    for i,out_Newick_file in out_Newick_files.items():
+        RF[i] = __exp4_compute_RF(out_Newick_file)
+    print(f"EXP4\tComputing random orders")
+    random_leaves_order(
+        in_TreeVec_file, nb_orders=10, out_file_prefix=os.path.join("exp4", "order")
+    )
+    print(f"EXP4\tComputing LCS distance")
+    LCS_files = __exp4_compute_LCS(out_Newick_files)
+    print(f"EXP4\tAggregating results")
+    print(f"EXP4\tGenerating figures")
             
     
 
