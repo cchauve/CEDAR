@@ -1,6 +1,7 @@
 """
 Implementing SPR tree rearrangement in ETE3
 """
+import collections
 
 from ete3 import Tree
 import random
@@ -24,13 +25,14 @@ def spr_inplace(t, a, b):
     # A parent
     U = A.up
     # Prune subtree rooted at node B
-    _ = B.detach()
+    _ = B.detach()#__detach(t,B)
     if not Y.is_root():
         X.dist += Y.dist
-        Y.delete()
+        Y.delete()#__delete(t,Y)
     else:
         t.name = X.name
         t.children = X.children
+        for v in t.children: v.up = t
     # Regraft above node A
     U.add_child(name=y, dist=aa/2.0)
     A.dist = aa/2.0
@@ -47,13 +49,15 @@ def check_spr(t, a, b):
     - t (Tree)
     - a,b (str,str)
     """
-    __nodes = [node.name for node in t.traverse("postorder")]
     if a == b:
         return False
     B = t.search_nodes(name=b)[0]
     A = t.search_nodes(name=a)[0]
     if A.is_root():
         # f"{a} = root"
+        return False
+    if B.is_root():
+        # f"{b} = root"
         return False
     ancestor = t.get_common_ancestor(a,b)
     if ancestor.name == b:
@@ -63,7 +67,7 @@ def check_spr(t, a, b):
     if Y.name == a:        
         # f"{b} child of {a}"
         return False
-    if A in Y.get_children():
+    if a in [V.name for V in Y.get_children()]:
         # f"{b} sister of {a}"
         return False
     return True
@@ -87,6 +91,7 @@ def random_spr(t):
             return nb_tries
         else:
             nb_tries += 1
+        
 
 
 # #t = Tree('((((H:1.0,K:1.0)D:1.0,(F:1.0,I:1.0)G:1.0)B:1.0,E:1.0)A:1.0,((L:1.0,(N:1.0,Q:1.0)O:1.0)J:1.0,(P:1.0,S:1.0)M:1.0)C:1.0)X;', format=1)

@@ -594,7 +594,7 @@ def __read_TreeVec_file(in_TreeVec_file):
                 treevec_str=TreeVec_tree, idx2leaf=idx2leaf, format=1, compact=True
             )
         )
-    return TreeVec_trees[1:],leaf2idx,idx2leaf
+    return TreeVec_trees,leaf2idx,idx2leaf
 
 def __write_file(in_lines, output_file):
     """
@@ -604,9 +604,9 @@ def __write_file(in_lines, output_file):
         for line in in_lines:
             out_file.write(f"{line}\n")
 
-def __write_TreeVec_trees(in_TreeVec_trees, idx2leaf, out_TreeVec_file):
+def __write_TreeVec_file(in_TreeVec_trees, idx2leaf, out_TreeVec_file):
     out_str = [f"#order {order2str(idx2leaf)}"]
-    for TreeVec_tree in TreeVec_trees:
+    for TreeVec_tree in in_TreeVec_trees:
         out_str.append(
             TreeVec_tree.treevec2str(format=1, compact=True)
         )
@@ -627,12 +627,12 @@ def convert_Newick2TreeVec(in_Newick_file, out_TreeVec_file, leaves_order_file=N
     # Converting trees
     out_TreeVec_trees = []
     for Newick_tree in in_Newick_trees:
-        TreeVec_tree = TreeVec(newick_str=Newick_tree)
+        TreeVec_tree = TreeVec(newick_str=Newick_tree, leaf2idx=leaf2idx, idx2leaf=idx2leaf)
         if leaf2idx is None or idx2leaf is None:
             leaf2idx,idx2leaf = TreeVec_tree.extract_leaves_order()
-        out_TreeVec_trees.append(TreeVec_tree.treevec2str(format=1, compact=True))
+        out_TreeVec_trees.append(TreeVec_tree)
     # Writing TreeVec trees
-    __write_TreeVec_file(TreeVec_trees, idx2leaf, out_TreeVec_file)
+    __write_TreeVec_file(out_TreeVec_trees, idx2leaf, out_TreeVec_file)
 
 def convert_TreeVec2Newick(in_TreeVec_file, out_Newick_file, Newick_format=0):
     """
@@ -654,6 +654,7 @@ def __hop_similarity(in_TreeVec_trees, mode="sequence"):
     - in_TreeVec_trees: list(TreeVec) list of TreeVec objects
     - if mode == "sequence", computes the similarity between successive trees
     - if mode == "pairwise", computes the similarity between all pairs of different trees
+    - if mode == "first", computes the similarity betwen the first tree and all other trees
     Output:
     - list(int,int,int): (tree1,tree2,similarity)
     """
@@ -665,6 +666,8 @@ def __hop_similarity(in_TreeVec_trees, mode="sequence"):
             range_j = [i+1]
         elif mode == "pairwise":
             range_j = [j for j in range(i+1,nb_trees)]
+        elif mode == "first":
+            range_j = [j for j in range(1,nb_trees) if i == 0]
         for j in range_j:
             tree2 = in_TreeVec_trees[j]
             similarity = tree1.hop_similarity(tree2, compute_seq=False)
@@ -676,6 +679,7 @@ def hop_similarity(in_TreeVec_file, out_dist_file, mode="sequence"):
     Reads a file of TreeVec trees and computes the hop similarity between them
     If mode=="sequence" computes the similarity between successive trees
     If mode=="pairwise" computes the similarity between all pairs of trees
+    If mode=="first", computes the similarity betwen the first tree and all other trees
     Input:
     - in_treevec_file (str): path to an existing treevec file
     - out_dist_file (str): path to the CSV distances file
@@ -686,14 +690,14 @@ def hop_similarity(in_TreeVec_file, out_dist_file, mode="sequence"):
     """
     TreeVec_trees,leaf2idx,idx2leaf = __read_TreeVec_file(in_TreeVec_file)
     # Computing the hop similarity
-    similarity = __hop_similarity(Treevec_trees, mode=mode)
+    similarity = __hop_similarity(TreeVec_trees, mode=mode)
     # Writing the output
     out_str = [
         f"#order {order2str(idx2leaf)}", f"#tree1,tree2,similarity"
     ] + [
         f"{i},{j},{s}" for [i,j,s] in similarity
     ]
-    __write_file(out_sr, out_dist_file)
+    __write_file(out_str, out_dist_file)
 
 
 def hop_neighbourhood_size(in_TreeVec_file, out_size_file):
@@ -727,9 +731,11 @@ def hop_path(in_TreeVec_file, out_TreeVec_file):
         tree1,tree2 = in_TreeVec_trees[i],in_TreeVec_trees[i+1]
         if i==0:
             out_TreeVec_trees.append(tree1)
+        j = 0
         tree3 = tree1.hop_next(tree2)
         while tree3 is not None:
             out_TreeVec_trees.append(tree3)
             tree1 = tree3
             tree3 = tree1.hop_next(tree2)
+            j += 1
     __write_TreeVec_file(out_TreeVec_trees, idx2leaf, out_TreeVec_file)
