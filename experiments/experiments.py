@@ -132,7 +132,6 @@ def experiment4():
                     p += 1
             for j in range(5,100,5):
                 for k in range(0,5):
-                    print(i,j,k)
                     nb_tries = random_spr(tree)
                 out_Newick_trees.append(tree.write(format=1))
             with open(out_Newick_file, "w") as out_file:
