@@ -5,7 +5,7 @@ the paper *"A Vector Representation for Phylogenetic Trees"*.
 
 **WARNING.** CEDAR is still in development.
 
-Dependencies: <a hef="https://numpy.org/">numpy</a> and <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a>.
+Dependencies: <a href="https://numpy.org/">numpy</a> and <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a>.
 
 CEDAR allows to perform the following tasks:
 -  Converting trees written in Newick format into the CEDAR format:
