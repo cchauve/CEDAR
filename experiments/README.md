@@ -1,29 +1,26 @@
-# Paper 1 (Spring 2024)
+# Experiments for the paper "A Vector Representation for Phylogenetic Trees"
 
 ## Experiment 1
 
 From 1000 random trees on 100 taxa, comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
 
 ```
-module load StdEnv/2020 python/3.10.2
 python experiments.py exp1 > exp1_results.txt
 ```
 
 ## Experiment 2
 
-From 50 random trees on 100 taxa, adding hop trees beween them, and comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
+From 50 random trees on 100 taxa, adding HOP trees beween them, and comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
 
 ```
-module load StdEnv/2020 python/3.10.2
 python experiments.py exp2 > exp2_results.txt
 ```
 
 ## Experiment 3
 
-Computing size neighbourhoods for 1000 random trees on 100 taxa.
+Computing the size of the HOP neighbourhood for 1000 random trees on 100 taxa.
 
 ```
-module load StdEnv/2020 python/3.10.2
 python experiments.py exp3 > exp3_results.txt
 ```
 
@@ -34,7 +31,6 @@ We consider 50 starting trees, each of 100 taxa, and for each we build a sequenc
 We compute the RF distance and the HOP distance, for 10 random orders.
 
 ```
-module load StdEnv/2020 python/3.10.2
 python experiments.py exp4
 python figures.py exp4_results.txt figures 100 50 10
 ```

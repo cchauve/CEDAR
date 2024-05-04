@@ -1,9 +1,9 @@
 EXP1	Converting random.trees.1000.nwk into random.trees.1000.vec
 EXP1	Uncompressed Newick file random.trees.1000.nwk:    	2372905 Bytes
-EXP1	Uncompressed TreeVec file random.trees.1000.vec: 	2186306 Bytes
-EXP1	Space usage ratio:	0.921
+EXP1	Uncompressed TreeVec file random.trees.1000.vec: 	2187306 Bytes
+EXP1	Space usage ratio:	0.922
 EXP1	Compressing random.trees.1000.nwk into exp1_random.trees.1000.nwk.gz
 EXP1	Compressing random.trees.1000.vec into exp1_random.trees.1000.vec.gz
 EXP1	Compressed Newick file exp1_random.trees.1000.nwk.gz:     	942017 Bytes
-EXP1	Compressed TreeVec file exp1_random.trees.1000.vec.gz:  	890064 Bytes
+EXP1	Compressed TreeVec file exp1_random.trees.1000.vec.gz:  	890136 Bytes
 EXP1	Space usage ratio:	0.945

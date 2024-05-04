@@ -1,5 +1,5 @@
 """
-Experiments for the paper "A Vecor Representation for Phylogenetic Trees
+Experiments for the paper "A Vector Representation for Phylogenetic Trees"
 """
 
 import os
@@ -14,7 +14,7 @@ sys.path.append("../src")
 from ete3 import Tree
 from SPR import random_spr
 
-from TreeVec import (
+from CEDAR import (
     random_leaves_order,
     convert_Newick2TreeVec,
     convert_TreeVec2Newick,
