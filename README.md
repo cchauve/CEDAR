@@ -3,7 +3,7 @@
 CEDAR is a program aimed at manipulating rooted phylogenetic trees encoded as vecors, as described in
 the paper "A Vector Representation for Phylogenetic Trees".
 
-*WARNING.* CEDAR is still in development.
+**WARNING.** CEDAR is still in development.
 
 CEDAR allows to perform the following tasks:
 -  Converting trees written in Newick format into the CEDAR format:
@@ -16,7 +16,7 @@ CEDAR allows to perform the following tasks:
    The format of a taxa order file is a single line, starting by `#order ` followed by the list of all
    leaves separated by commas.
 
-   *Assumption*: all trees in `Newick_file` are rooted phylogenetic trees on the same set of taxa.
+   **Assumption**: all trees in `Newick_file` are rooted phylogenetic trees on the same set of taxa.
 
 - Creating random taxa orders:
   ```
@@ -25,7 +25,7 @@ CEDAR allows to perform the following tasks:
   Creates `N` random taxa orders in files `out_dir/out_pref_I.txt` for `I` from `1` to `N`.
   Default values: `N=1`, `out_pref=CEDAR_random_order`.
 
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
 - Converting trees written in CEDAR format into the Newick format:
   ```
@@ -33,7 +33,7 @@ CEDAR allows to perform the following tasks:
   ```
   The optional `format` agument definesthe Newick format of the created Newick file (default: `1`).
   
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
 - Computing the HOP similarity between trees:
   ```
@@ -45,7 +45,7 @@ CEDAR allows to perform the following tasks:
   - If `mode=first` the HOP similariy is computed between the first tree and all other trees.
   - The default mode is `sequence`.
 
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
 -  Computing the HOP neighbourhood size:
    ```
@@ -53,7 +53,7 @@ CEDAR allows to perform the following tasks:
    ```
    Computes the size of the HOP neighbourhood for every tree in `CEDAR_file`
 
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
 - Computing the HOP neighbourhoods:
   ```
@@ -62,7 +62,7 @@ CEDAR allows to perform the following tasks:
   Computes the trees in the HOP neighbourhood for every tree in `CEDAR_file`. The HOP neighbourhood for
   tree `i` is in the file `out_dir/out_pref.i.vec`. The default value for `out_pref` is `CEDAR_HOP_neighbourhood`.
 
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
 - Computing HOP paths between successive trees:
   ```
@@ -71,5 +71,5 @@ CEDAR allows to perform the following tasks:
   Creates a new CEDAR file where a sequence of trees, each differing from the previous one by a single
   HOP, is inserted between all pairs of successive trees in the input file `CEDAR_file`.
 
-  *Assumption*: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
+  **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
