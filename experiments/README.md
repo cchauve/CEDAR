@@ -31,6 +31,7 @@ We consider 50 starting trees, each of 100 taxa, and for each we build a sequenc
 We compute the RF distance and the HOP distance, for 10 random orders.
 
 ```
+mkdir -p exp4
 python experiments.py exp4
 python figures.py exp4_results.txt figures 100 50 10
 ```

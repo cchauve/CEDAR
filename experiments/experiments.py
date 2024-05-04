@@ -212,7 +212,7 @@ def experiment4():
     random_leaves_order(
         in_TreeVec_file, nb_orders=10, out_file_prefix=os.path.join("exp4", "order")
     )
-    print(f"EXP4\tComputing LCS distance")
+    print(f"EXP4\tComputing HOP distance")
     LCS_files = __exp4_compute_LCS(out_Newick_files)
     print(f"EXP4\tAggregating results")
     out_dist_file = "exp4_results.txt"
