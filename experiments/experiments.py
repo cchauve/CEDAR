@@ -6,6 +6,7 @@ import os
 import sys
 import gzip
 import shutil
+import numpy as np
 
 from os.path import dirname
 sys.path.append("../src")
@@ -104,10 +105,22 @@ def experiment3():
     """
 
     in_TreeVec_file = "random.trees.1000.vec"
-    out_size_file = "exp3_results.txt"
+    out_size_file = "exp3_results.csv"
 
     print(f"EXP3\tComputing hop neighbourhood size in file {out_size_file}")
     hop_neighbourhood_size(in_TreeVec_file, out_size_file)
+    ngb_size = []
+    with open(out_size_file) as in_file:
+        for line in in_file.readlines()[2:]:
+            ngb_size.append(int(line.rstrip().split(",")[1]))
+    ngb_min = min(ngb_size)
+    ngb_max = max(ngb_size)
+    ngb_mean = round(np.mean(ngb_size),2)
+    ngb_std = round(np.std(ngb_size),2)
+    print(f"EXP3\tHop neighbourhood size - mean: {ngb_mean}")
+    print(f"EXP3\tHop neighbourhood size - min:  {ngb_min}")
+    print(f"EXP3\tHop neighbourhood size - max  {ngb_max}")
+    print(f"EXP3\tHop neighbourhood size - std  {ngb_std}")
 
 
 def __exp4_compute_SPR(in_Newick_file, out_prefix, spr_min, spr_max, spr_step):

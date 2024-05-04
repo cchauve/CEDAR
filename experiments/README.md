@@ -24,7 +24,7 @@ Computing size neighbourhoods for 1000 random trees on 100 taxa.
 
 ```
 module load StdEnv/2020 python/3.10.2
-python experiments.py exp3
+python experiments.py exp3 > exp3_results.txt
 ```
 
 ## Experiment 4
