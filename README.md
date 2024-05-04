@@ -49,11 +49,11 @@ CEDAR allows to perform the following tasks:
 
   **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
--  Computing the HOP neighbourhood size:
-   ```
-   python src/CEDAR.py HOP_ngb1 --input_file CEDAR_file --output_file size_file
-   ```
-   Computes the size of the HOP neighbourhood for every tree in `CEDAR_file`
+- Computing the HOP neighbourhood size:
+  ```
+  python src/CEDAR.py HOP_ngb1 --input_file CEDAR_file --output_file size_file
+  ```
+  Computes the size of the HOP neighbourhood for every tree in `CEDAR_file`
 
   **Assumption**: all trees in `CEDAR_file` are rooted phylogenetic trees on the same set of taxa.
 
