@@ -188,7 +188,7 @@ def __exp4_aggregate_results(RF, LCS_files, out_dist_file, spr_step, nb_taxa):
                     lines = in_file.readlines()[2:]
                     for line in lines:
                         tree1,tree2,sim = line.rstrip().split(",")
-                        out_file.write(f"{i},{spr_step*int(tree2)},{j},HOP,{nb_taxa-int(sim)}\n")
+                        out_file.write(f"{i},{spr_step*(int(tree2)-1)},{j},HOP,{nb_taxa-int(sim)}\n")
                 
 
     
