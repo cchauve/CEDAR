@@ -1,7 +1,7 @@
 # CEDAR: Encoding phylogenetic trees as vectors
 
 CEDAR is a program aimed at manipulating rooted phylogenetic trees encoded as vecors, as described in
-the paper "A Vector Representation for Phylogenetic Trees".
+the paper *"A Vector Representation for Phylogenetic Trees"*.
 
 **WARNING.** CEDAR is still in development.
 
