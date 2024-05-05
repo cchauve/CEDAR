@@ -12,7 +12,7 @@ CEDAR can be used in command line (described below) or wihin python progams usin
 
 The directory [example](example/) contains an example of using CEDAR through command-line.
 
-The directory [experimens](experiments) contains the code that can reproduce the experiments described in the 
+The directory [experiments](experiments) contains the code to reproduce the experiments described in the 
 paper *"A Vector Representation for Phylogenetic Trees"*.
 
 ## Command-line usage
