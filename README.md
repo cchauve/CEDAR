@@ -78,11 +78,11 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
 
 ## Class TreeVec
 
-The python class `TreeVec` implemented in the file  [TreeVec.py](src/TreeVec.py). A `TreeVec` object, that
-encodes a rooted phylogenetic tree as a vector can be instantiated from
-- a Newick string, expcted to be in format 1,
-- an <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a> `Tree` object,
-- a string encoding a TeeVec vector.
+The python class `TreeVec` is implemented in the file  [TreeVec.py](src/TreeVec.py). 
+A `TreeVec` object, that encodes a rooted phylogenetic tree as a vector, can be instantiated from
+- a Newick string, expected to be in format 1, or
+- an <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a> `Tree` object, or
+- a string encoding a `TreeVec` vector itself.
 
 The main mehods of the class, aside of the constuctor, are:
 - `copy`: creates a copy of a `TreeVec` object;
