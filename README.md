@@ -15,6 +15,10 @@ The directory [example](example/) contains an example of using CEDAR through com
 The directory [experiments](experiments) contains the code to reproduce the experiments described in the 
 paper *"A Vector Representation for Phylogenetic Trees"*.
 
+## Vector encoding of phylogenetic trees
+
+CEDAR implements a vector representation of rooted phylogenetic trees. Let **T** be a rooted, binary, phylogenetic trees on $n$ leaves.
+
 ## Command-line usage
 
 The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the following tasks:
@@ -84,7 +88,7 @@ A `TreeVec` object, that encodes a rooted phylogenetic tree as a vector, can be 
 - an <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a> `Tree` object, or
 - a string encoding a `TreeVec` vector itself.
 
-The main mehods of the class, aside of the constuctor, are:
+The main methods of the class, aside of the constuctor, are:
 - `copy`: creates a copy of a `TreeVec` object;
 - `check_vector`: checks that a TreVec object is a valid vector representation of a phylogenetic tree;
 - `extract_leaves_order`: extracts from a `TreeVec` object the taxa order used to create the vector representation of the tree;
