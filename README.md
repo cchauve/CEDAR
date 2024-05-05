@@ -55,7 +55,7 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
   - If `mode=sequence` the HOP similariy is computed between successive pairs of trees.
   - If `mode=first` the HOP similariy is computed between the first tree and all other trees.
   - The default mode is `sequence`.
-  - 
+    
 - Computing the HOP neighbourhood size:
   ```
   python src/CEDAR.py HOP_ngb1 --input_file CEDAR_file --output_file size_file
