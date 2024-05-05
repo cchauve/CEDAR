@@ -38,7 +38,7 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
   Default values: `N=1`, `out_pref=CEDAR_random_order`.
 
   **Assumption**: in all commands, all trees in a `CEDAR_file` are rooted phylogenetic trees on the same set of taxa
-  and having been encoded into vector using the same oder on taxa, encodd in the first line of the file.
+  and having been encoded into vector using the same order on taxa, written in the first line of the file.
 
 - Converting trees written in CEDAR format into the Newick format:
   ```
