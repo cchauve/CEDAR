@@ -199,8 +199,8 @@ class TreeVec:
         - leaf2idx: dict(str -> int) leaf name to leaf label
         if None: leaf labels added during a postorder traversal in order of visit.
         """
-        # Adding a root labeled 1 and named "root"
-        T = Tree(name="root")
+        # Adding a root labeled 1 and named "_"
+        T = Tree(name="")
         T.add_feature("label", 1)
         T.add_child(tree)
         # Labeling nodes
