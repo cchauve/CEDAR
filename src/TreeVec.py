@@ -301,7 +301,8 @@ class TreeVec:
         Transform a vector representation into a Newick string in newick_format
         """
         tree = self.treevec2tree()
-        return tree.write(format=newick_format)
+        tree1 = tree.get_tree_root().children[0]
+        return tree1.write(format=newick_format)
 
     def newick2treevec(self, newick_str, leaf2idx=None):
         """
