@@ -12,9 +12,9 @@ Creating a random leaves order file `random_order_1.txt`:
 python ../src/CEDAR.py orders --input_file random.trees.5.vec --output_dir . --nb_orders 1 --output_prefix random_order
 ```
 
-Converting back `random.trees.5.2.vec` into Newick format:
+Converting back `random.trees.5.vec` into Newick format:
 ```
-python ../src/CEDAR.py toNewick --input_file random.trees.5.2.vec --output_file random.trees.5.2.nwk --format 1
+python ../src/CEDAR.py toNewick --input_file random.trees.5.vec --output_file random.trees.5.2.nwk --format 1
 ```
 
 Computing the HOP similarity:
