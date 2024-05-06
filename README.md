@@ -17,7 +17,39 @@ paper *"A Vector Representation for Phylogenetic Trees"*.
 
 ## Vector encoding of phylogenetic trees
 
-CEDAR implements a vector representation of rooted phylogenetic trees. Let **T** be a rooted, binary, phylogenetic trees on $n$ leaves.
+CEDAR implements a vector representation of rooted phylogenetic trees. 
+Consider the set of all rooted binary phylogenetic trees with totally ordered leaves, labelled $1,\dots,n$. 
+We augment all trees with a dummy root connected to the root of $T$ by a branch of length $0.0$.
+
+A vector representation of a tree is a vector $\mathbf{v}=(v_1,\dots,v_{2n})$ of $2n$ entries that satisfies the following constraints:
+- $v_1=1$;
+- $\forall i \in \{1,\dots,n\}$, $i$ appears exactly twice in $v$;
+- $\forall i \in \{2,\dots,n\}$, the first occurrence of $i$ in $v$ appears before the second occurrence of $i-1$;
+- $\forall i \in \{2,\dots,n\}$, the second occurrence of $i$ in $v$ appears after the second occurrence of $i-1$.
+
+There is a one-to-one correspondence between the set of rooted binary phylogenetic trees with leaves labelled $1,\dots,n$ and the set of vector representations on $\{1,\dot,n\}$ defined above.
+In a vector representation, the second occurrence of $i$ encodes the leaf labelled $i$ and the first occurrence of $i$ encodes an internal node on the path from the leaf $i$ to the root of the tree.
+
+Given a rooted binary phylogenetic tree $T$ on $n$ leaves, the vector representation of $T$ is written as follows in a CEDAR tree:
+- the entries of the vector are separated by commas (`,`);
+- if the entry $i$ corresponds to an internal node, it is written as `i:N:b` where `N` is the name of the node and `b` the length of the branch to its parent;
+- if the entry $i$ corresponds to a leaf it is written as `b` where here too ``b` the length of the branch to its parent.  
+Note that the label $i$ of leaves does not need to be written as it is implicit that the $i^{th}$ leaf is labelled by $i$.
+To recover the names of leaves, a CEDAR file always starts with a first line that contains the order on the leaves used to define the vector representation.
+
+For example, a CEDAR file encoding the two trees 
+```
+((b:1.0,d:2.0)e:2.0,(a:1.0,c:1.0)g:1.0)f;
+(((b:1.0,d:2.0)x:2.0,a:1.0)y:1.0,c:1.0)z;
+```
+where the first tree has internal nodes named `e,f,g` and the second tree has internal nodes named `x,y,z`, and where leaves are ordered as
+`1=a,2=b,3=c,4=d`, is
+```
+#order a,b,c,d
+1:root:0.0,2:f:0.0,3:g:1.0,1.0,4:e:2.0,1.0,1.0,2.0;
+1:root:0.0,3:z:0.0,2:y:1.0,1.0,4:x:2.0,1.0,1.0,2.0;
+```
+corresponding to vectors $(1,2,3,1,4,2,3,4)$ and $(1,3,2,1,4,2,3,4)$.
 
 ## Command-line usage
 
