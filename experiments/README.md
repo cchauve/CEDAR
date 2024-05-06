@@ -33,5 +33,5 @@ We compute the RF distance and the HOP distance, for 10 random orders.
 ```
 mkdir -p exp4
 python experiments.py exp4
-python figures.py exp4_results.txt figures 100 50 10
+python figures.py exp4_results.txt figures 100 50 10 > exp4_stats.txt
 ```

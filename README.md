@@ -46,8 +46,8 @@ where the first tree has internal nodes named `e,f,g` and the second tree has in
 `1=a,2=b,3=c,4=d`, is
 ```
 #order a,b,c,d
-1:root:0.0,2:f:0.0,3:g:1.0,1.0,4:e:2.0,1.0,1.0,2.0;
-1:root:0.0,3:z:0.0,2:y:1.0,1.0,4:x:2.0,1.0,1.0,2.0;
+1::0.0,2:f:0.0,3:g:1.0,1.0,4:e:2.0,1.0,1.0,2.0;
+1::0.0,3:z:0.0,2:y:1.0,1.0,4:x:2.0,1.0,1.0,2.0;
 ```
 corresponding to vectors $(1,2,3,1,4,2,3,4)$ and $(1,3,2,1,4,2,3,4)$.
 
