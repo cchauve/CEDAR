@@ -276,7 +276,6 @@ class TreeVec:
         occurrences = {i: 0 for i in range(1,n+1)}
         v,j = [],1
         for node_str in s1:
-            #print("node",node_str)
             node = node_str.split(sep_node)
             if format == 1 and (not compact):
                 label,name,dist = int(node[0]),node[1],float(node[2])
