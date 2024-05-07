@@ -1,5 +1,5 @@
 EXP3	Computing hop neighbourhood size in file exp3_results.csv
-EXP3	Hop neighbourhood size - mean: 12663.25
-EXP3	Hop neighbourhood size - min:  10156
-EXP3	Hop neighbourhood size - max  13237
-EXP3	Hop neighbourhood size - std  182.83
+EXP3	Hop neighbourhood size - mean: 12424.2
+EXP3	Hop neighbourhood size - min:  9958
+EXP3	Hop neighbourhood size - max  13000
+EXP3	Hop neighbourhood size - std  183.49

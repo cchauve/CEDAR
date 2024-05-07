@@ -389,7 +389,7 @@ class TreeVec:
     def hop_neighbourhood_size(self):
         """
         Compute the size of the hop neighbourhood of a tree
-        - Output: (int), neighbourhood siz
+        - Output: (int), neighbourhood size
         """
         v = self.vector
         leafpos = {}
