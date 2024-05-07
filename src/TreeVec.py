@@ -394,38 +394,45 @@ class TreeVec:
         v = self.vector
         leafpos = {}
         ngb_size = 0
-        for i in range(1,len(v)):
-            node = v[i]
+        for j in range(1,len(v)):
+            node = v[j]
             if node[3]:
-                leafpos[node[0]] = i
-        for i in range(1,len(v)):
-            node = v[i]
+                leafpos[node[0]] = j
+        for j in range(1,len(v)):
+            node = v[j]
             if not node[3]:
-                j = leafpos[node[0]-1]
-                correction = 1 if (not v[i+1][3]) else 0
-                ngb_size += j - correction
+                k = leafpos[node[0]-1]
+                ngb_size += k-1 # -1 to exclude (j,j)
+                if j+1 <= k: ngb_size -= 1 # to exclude (j,j+1)
+                if j+2 <= k: ngb_size -= 1 # to exclude (j,j+2)
         return ngb_size
 
-    def hop_neighbourhood(self):
+    def hop_neighbourhood(self, export_list=False):
         """
         Compute the hop neighbourhood of a tree
-        - Output: list(TreeVec)
+        - Output:
+        if export_list is False: list(TreeVec)
+        else: list((int,int)), list of HOP defining the neighbourhood
         """
         v = self.vector                
         leafpos = {}
         ngb = []
-        for i in range(1,len(v)):
-            node = v[i]
+        for j in range(1,len(v)):
+            node = v[j]
             if node[3]:
-                leafpos[node[0]] = i
-        for i in range(1,len(v)):
-            node = v[i]
+                leafpos[node[0]] = j
+        for j in range(1,len(v)):
+            node = v[j]
             if not node[3]:
-                j = leafpos[node[0]-1]
-                range_j = list(range(1,j+1))
-                range_j.remove(i+1)
-                range_j.remove(i)
-                ngb += [self.hop(i,j1, inplace=False) for j1 in range_j]
+                k = leafpos[node[0]-1]
+                range_k = list(range(1,k+1)) # 1 to exclude first position 0
+                range_k.remove(j)
+                if j+1 <= k: range_k.remove(j+1)
+                if j+2 <= k: range_k.remove(j+2)
+                if export_list:
+                    ngb += range_k
+                else:
+                    ngb += [self.hop(j,k1, inplace=False) for k1 in range_k]
         return ngb
 
     # Hop-similarity related functions    
