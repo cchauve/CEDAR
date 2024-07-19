@@ -202,6 +202,7 @@ def experiment4():
     in_Newick_file = "random.trees.50.nwk"
     in_TreeVec_file = "random.trees.50.vec"
 
+    os.makedirs("exp4", exist_ok=True)
     print(f"EXP4\tComputing SPR trees")
     out_Newick_files = __exp4_compute_SPR(in_Newick_file, "random.trees.50.spr", 5, 100, 5)
     print(f"EXP4\tComputing RF distance")
