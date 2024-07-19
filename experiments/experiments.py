@@ -61,7 +61,7 @@ def experiment1():
 
 def experiment2():
     """
-    Using the first 50 random trees on 100 taxa of experiment 1, adding hop trees beween them, and
+    Using the first 50 random trees on 100 taxa of experiment 1, adding HOP trees beween them, and
     comparing the disk space for storing them in Newick format and in vector format, both uncompressed
     and gzipped.
     """
@@ -71,10 +71,10 @@ def experiment2():
     out_Newick_file = "exp2_random.trees.50.path.nwk"
     out_sim_file = "exp2_random.trees.50.sim.txt"
 
-    print(f"EXP2\tComputing hop similarity in file {out_sim_file}")
+    print(f"EXP2\tComputing HOP similarity in file {out_sim_file}")
     hop_similarity(in_TreeVec_file, out_sim_file, mode="sequence")
     
-    print(f"EXP2\tComputing hop paths in file {out_TreeVec_file}")
+    print(f"EXP2\tComputing HOP paths in file {out_TreeVec_file}")
     hop_path(in_TreeVec_file, out_TreeVec_file)
     print(f"EXP2\tConverting {out_TreeVec_file} into {out_Newick_file}")
     convert_TreeVec2Newick(out_TreeVec_file, out_Newick_file, Newick_format=0)
@@ -101,13 +101,13 @@ def experiment2():
 
 def experiment3():
     """
-    Computing the hop neighbourhood sizes
+    Computing the HOP neighbourhood sizes
     """
 
     in_TreeVec_file = "random.trees.1000.vec"
     out_size_file = "exp3_results.csv"
 
-    print(f"EXP3\tComputing hop neighbourhood size in file {out_size_file}")
+    print(f"EXP3\tComputing HOP neighbourhood size in file {out_size_file}")
     hop_neighbourhood_size(in_TreeVec_file, out_size_file)
     ngb_size = []
     with open(out_size_file) as in_file:
@@ -117,10 +117,10 @@ def experiment3():
     ngb_max = max(ngb_size)
     ngb_mean = round(np.mean(ngb_size),2)
     ngb_std = round(np.std(ngb_size),2)
-    print(f"EXP3\tHop neighbourhood size - mean: {ngb_mean}")
-    print(f"EXP3\tHop neighbourhood size - min:  {ngb_min}")
-    print(f"EXP3\tHop neighbourhood size - max  {ngb_max}")
-    print(f"EXP3\tHop neighbourhood size - std  {ngb_std}")
+    print(f"EXP3\tHOP neighbourhood size - mean: {ngb_mean}")
+    print(f"EXP3\tHOP neighbourhood size - min:  {ngb_min}")
+    print(f"EXP3\tHOP neighbourhood size - max  {ngb_max}")
+    print(f"EXP3\tHOP neighbourhood size - std  {ngb_std}")
 
 
 def __exp4_compute_SPR(in_Newick_file, out_prefix, spr_min, spr_max, spr_step):
