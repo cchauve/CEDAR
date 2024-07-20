@@ -27,7 +27,7 @@ A vector representation of a tree is a vector $\mathbf{v}=(v_1,\dots,v_{2n})$ of
 - $\forall i \in \{2,\dots,n\}$, the first occurrence of $i$ in $v$ appears before the second occurrence of $i-1$;
 - $\forall i \in \{2,\dots,n\}$, the second occurrence of $i$ in $v$ appears after the second occurrence of $i-1$.
 
-There is a one-to-one correspondence between the set of rooted binary phylogenetic trees with leaves labelled $1,\dots,n$ and the set of vector representations on $\{1,\dot,n\}$ defined above.
+There is a one-to-one correspondence between the set of rooted binary phylogenetic trees with leaves labelled $1,\dots,n$ and the set of vector representations on $\{1,\dots,n\}$ defined above.
 In a vector representation, the second occurrence of $i$ encodes the leaf labelled $i$ and the first occurrence of $i$ encodes an internal node on the path from the leaf $i$ to the root of the tree.
 
 Given a rooted binary phylogenetic tree $T$ on $n$ leaves, the vector representation of $T$ is written as follows in a CEDAR tree:
