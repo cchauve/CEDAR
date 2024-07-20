@@ -33,7 +33,7 @@ In a vector representation, the second occurrence of $i$ encodes the leaf labell
 Given a rooted binary phylogenetic tree $T$ on $n$ leaves, the vector representation of $T$ is written as follows in a CEDAR tree:
 - the entries of the vector are separated by commas (`,`);
 - if the entry $i$ corresponds to an internal node, it is written as `i:N:b` where `N` is the name of the node and `b` the length of the branch to its parent;
-- if the entry $i$ corresponds to a leaf it is written as `b` where here too ``b` the length of the branch to its parent.  
+- if the entry $i$ corresponds to a leaf it is written as `b` where here too `b` is the length of the branch to its parent.  
 Note that the label $i$ of leaves does not need to be written as it is implicit that the $i^{th}$ leaf is labelled by $i$.
 To recover the names of leaves, a CEDAR file always starts with a first line that contains the order on the leaves used to define the vector representation.
 
