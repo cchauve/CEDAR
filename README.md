@@ -45,7 +45,7 @@ For example, a CEDAR file encoding the two trees
 where the first tree has internal nodes named `e,f,g` and the second tree has internal nodes named `x,y,z`, and where leaves are ordered as
 `1=a,2=b,3=c,4=d`, is
 ```
-#order a,b,c,d
+#a,b,c,d
 1::0.0,2:f:0.0,3:g:1.0,1.0,4:e:2.0,1.0,1.0,2.0;
 1::0.0,3:z:0.0,2:y:1.0,1.0,4:x:2.0,1.0,1.0,2.0;
 ```
