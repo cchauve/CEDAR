@@ -4,11 +4,12 @@ Generating random trees for the paper "A Vector Representation for Phylogenetic 
 
 import sys
 import random
+from datetime import datetime
+random.seed(datetime.now().timestamp())
 
 N = int(sys.argv[1]) # Number of taxa
 M = int(sys.argv[1]) # Number of trees
 OUT_FILE = sys.argv[3] # Output file
-
 
 def create_tree():
     BRANCHES = {

@@ -1,5 +1,11 @@
 # Experiments for the paper "A Vector Representation for Phylogenetic Trees"
 
+## Generating 1000 random trees on 100 taxa
+
+```
+python generate_random_tree.py 100 1000 random.trees.1000.nwk
+```
+
 ## Experiment 1
 
 From 1000 random trees on 100 taxa, comparing the disk space for storing them in Newick format and in vector format, both uncompressed and gzipped.
