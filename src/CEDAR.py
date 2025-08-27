@@ -58,7 +58,7 @@ def read_leaves_order_file(in_leaves_order_file, sep=SEP_ORDER):
     """
     Reads a leaves order from a file
     Input:
-    - in_leaves_order_file (str): aph to a file whose first line contains
+    - in_leaves_order_file (str): path to a file whose first line contains
       a leaves order encoded as the leaves names in increasing order separated
       by SEP_ORDER
     Output:
