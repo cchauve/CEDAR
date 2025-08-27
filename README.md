@@ -56,13 +56,13 @@ corresponding to vectors $(1,2,3,1,4,2,3,4)$ and $(1,3,2,1,4,2,3,4)$.
 The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the following tasks:
 -  Converting trees written in Newick format into the CEDAR format:
    ```
-   python src/CEDAR.py fromNewick --input_file Newick_file --output_file CEDAR_file [--order_file orde]
+   python src/CEDAR.py fromNewick --input_file Newick_file --output_file CEDAR_file [--order_file order]
    ```
    Encodes the files from `Newick_file` in the CEDAR format in file `CEDAR_file`.
    If the file `order` is provided, it is used to determine the taxa order used for the encoding;
    otherwise, the taxa order is defined by a postorder travrsal of the first tree in `Newick_file`.
-   The format of a taxa order file is a single line, starting by `#order ` followed by the list of all
-   leaves separated by commas.
+   The format of a taxa order file is a single line, starting conaining the list of all
+   leaves, in the desired order, separated by commas.
 
    **Assumption**: all trees in `Newick_file` are rooted phylogenetic trees on the same set of taxa.
 
