@@ -60,7 +60,7 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
    ```
    Encodes the files from `Newick_file` in the CEDAR format in file `CEDAR_file`.
    If the file `order` is provided, it is used to determine the taxa order used for the encoding;
-   otherwise, the taxa order is defined by a postorder travrsal of the first tree in `Newick_file`.
+   otherwise, the taxa order is defined by a postorder traversal of the first tree in `Newick_file`.
    The format of a taxa order file is a single line, starting conaining the list of all
    leaves, in the desired order, separated by commas.
 
@@ -80,16 +80,16 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
   ```
   python src/CEDAR.py toNewick --input_file CEDAR_file --output_file Newick_file [--format Newick_format]
   ```
-  The optional `format` agument definesthe Newick format of the created Newick file (default: `1`).
+  The optional `format` argument defines the Newick format of the created Newick file (default: `1`).
   
 - Computing the HOP similarity between trees:
   ```
   python src/CEDAR.py HOP_sim --input_file CEDAR_file --output_file similarity_file [--mode distance_mode]
   ```
   Creates a file that records the HOP similarity between the trees in CEDAR_file.
-  - If `mode=pairwise` the HOP similariy is computed between all pairs of trees.
-  - If `mode=sequence` the HOP similariy is computed between successive pairs of trees.
-  - If `mode=first` the HOP similariy is computed between the first tree and all other trees.
+  - If `mode=pairwise` the HOP similarity is computed between all pairs of trees.
+  - If `mode=sequence` the HOP similarity is computed between successive pairs of trees.
+  - If `mode=first` the HOP similarity is computed between the first tree and all other trees.
   - The default mode is `sequence`.
     
 - Computing the HOP neighbourhood size:
@@ -132,5 +132,5 @@ The main methods of the class, aside of the constuctor, are:
 - `hop_neighbourhood`: computes the `TreeVec` representations of the trees in the HOP neighbourhood of the tree encoded by the object;
 - `hop_similarity`: computes the HOP similarity or a HOP LCS (see paper for an explanation) with another tree;
 - `hop_next`: creates a tree one HOP closer to a target tree;
-- `random_hop`: peform a andom HOP on the current tree.
+- `random_hop`: peform a random HOP on the current tree.
 
