@@ -13,24 +13,24 @@ __status__ = "Release"
 import os
 import argparse
 
-from TreeVec import (
+from cedar.TreeVec import (
     random_leaves_order
 )
-from Newick import (
+from cedar.Newick import (
     convert_Newick2TreeVec,
     convert_TreeVec2Newick
 )
-from HOP import (
+from cedar.HOP import (
     hop_similarity,
     hop_neighbourhood_size,
     hop_neighbourhood,
     hop_path,
     hop_random
 )
-from TreeSpace import (
+from cedar.TreeSpace import (
     hill_climbing
 )
-from GelmanRubin import (
+from cedar.GelmanRubin import (
     GelmanRubin
 )
 
@@ -38,7 +38,7 @@ def _parse_arguments():
     description = "CEDAR: manipulating phylogenetic rooted trees representations as vectors"
 
     argparser = argparse.ArgumentParser(prog="CEDAR", description=description)
-    
+
     subparsers = argparser.add_subparsers(title="commands", help="command help")
 
     # Converting Newick trees file to CEDAR trees file
@@ -82,7 +82,7 @@ def _parse_arguments():
     hop_ngb2.set_defaults(cmd="HOP_ngb2")
     hop_ngb2.add_argument("--input_file", type=str, help="Input CEDAR file")
     hop_ngb2.add_argument("--output_dir", type=str, help="Output directory")
-    hop_ngb2.add_argument("--output_prefix", type=str, default="CEDAR_HOP_neighbourhood", help="[OPTIONAL] Prefix of output files")    
+    hop_ngb2.add_argument("--output_prefix", type=str, default="CEDAR_HOP_neighbourhood", help="[OPTIONAL] Prefix of output files")
 
     # Computing a HOP path beween successive trees
     hop_path = subparsers.add_parser("HOP_path", help="Create HOP path between successive trees")
@@ -195,44 +195,34 @@ def GR(args):
         args.output_gr_file,
         args.output_orders_file
     )
-    
-def main(args):
-    
-    if args.cmd == "fromNewick":
-        fromNewick(args)
-        
-    elif args.cmd == "toNewick":
-        toNewick(args)
 
-    elif args.cmd == "orders":
-        orders(args)
-
-    elif args.cmd == "HOP_sim":
-        HOP_sim(args)
-
-    elif args.cmd == "HOP_ngb1":
-        HOP_ngb1(args)
-
-    elif args.cmd == "HOP_ngb2":
-        HOP_ngb2(args)
-
-    elif args.cmd == "HOP_path":
-        HOP_path(args)
-
-    elif args.cmd == "HOP_random":
-        HOP_random(args)
-
-    elif args.cmd == "HOP_hc":
-        HOP_hc(args)
-
-    elif args.cmd == "GR":
-        GR(args)
-        
-    else:
-        raise Exception("ERROR: Unknown command")
-
-if __name__ == "__main__":
-    
+def main():
     args = _parse_arguments()
 
-    main(args)
+    match args.cmd:
+        case "fromNewick":
+            fromNewick(args)
+        case "toNewick":
+            toNewick(args)
+        case "orders":
+            orders(args)
+        case "HOP_sim":
+            HOP_sim(args)
+        case "HOP_ngb1":
+            HOP_ngb1(args)
+        case "HOP_ngb2":
+            HOP_ngb2(args)
+        case "HOP_path":
+            HOP_path(args)
+        case "HOP_random":
+            HOP_random(args)
+        case "HOP_hc":
+            HOP_hc(args)
+        case "GR":
+            GR(args)
+        case _:
+            raise Exception("ERROR: Unknown command")
+
+
+if __name__ == "__main__":
+    main()

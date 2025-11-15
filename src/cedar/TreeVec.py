@@ -13,12 +13,12 @@ __status__ = "Release"
 
 import numpy as np
 from ete3 import Tree
-from LIS import LIS_len, LIS_seq
-from utils import (
+from cedar.LIS import LIS_len, LIS_seq
+from cedar.utils import (
     __read_file,
     __write_file
 )
-from LeavesOrder import (
+from cedar.LeavesOrder import (
     str2order,
     order2str
 )
@@ -44,7 +44,7 @@ class TreeVec:
     - the second occurrence of i encodes a leaf
     The tree is augmented by a root labeld 1 and with a single child called the
     dummy root.
-    
+
     Data structure: list([int,str,float,bool])
     - field 0 (int): label
     - field 1 (str): name of the node in the tree
@@ -88,7 +88,7 @@ class TreeVec:
         - If tree is not None, tree is a Tree object and the vector is created from it
           using leaf2idx
         - If newick_str is not None it is created from newick_str using idx2leaf and
-          expected in Newick format=1   
+          expected in Newick format=1
         - If treevec_str is not None it is created from treevec_str using idx2leaf and
           expected in format defined by format_str and compact
         - Otherwise an empty vector is created
@@ -101,7 +101,7 @@ class TreeVec:
         self.vector = []
         if treevec_vec is not None:
             self.vector = treevec_vec
-        elif tree is not None:            
+        elif tree is not None:
             self.vector = self.tree2treevec(tree, leaf2idx=leaf2idx)
         elif newick_str is not None:
             self.vector = self.newick2treevec(newick_str, leaf2idx=leaf2idx)
@@ -245,13 +245,13 @@ class TreeVec:
             leaf = label2leaf[i]
             v += paths[i][::-1] + [[i,leaf.name,leaf.dist,True]]
         return v
-    
+
     def treevec2str(self, format_str=1, compact=True):
         """
         Transform a tree vector representation into a string in format
         defined by format_str (1 or 2) and compact (True or False)
         """
-        sep_vec,sep_node = SEP_VEC,SEP_NODE, 
+        sep_vec,sep_node = SEP_VEC,SEP_NODE,
         _,idx2leaf = self.extract_leaves_order()
         out_str = []
         for node in self.vector:
@@ -339,7 +339,7 @@ class TreeVec:
         }
         new_tree = TreeVec(tree=self.treevec2tree(), leaf2idx=leaf2idx)
         return new_tree
-        
+
     """ Hop-related functions
     A hop is an SPR, so a subtree is pruned then regrafted.
     Not every SPR is a hop as the following restriction applies to hop:
@@ -373,13 +373,13 @@ class TreeVec:
     - j=i+2 if i+1 is not a leaf as (i,i+2) is equivalent to (i+1,i)
  
     """
-     
+
     def __hop_update_dist(self, v, i, j, x, y, z):
         """
         Update the branch lengths of a vector representation after having done a hop
-        i: position in vector of node whose branch to parent was subdivided by the pruning 
+        i: position in vector of node whose branch to parent was subdivided by the pruning
            (pruned subree root sibling)
-        j: position in vector of node whose branch to parent contains the regrafting 
+        j: position in vector of node whose branch to parent contains the regrafting
            (regrafting node)
            implies that j-1 is the position of its parent, the new node created by regrafing
         x: length of branch from pruned subtree root sibling to parent
@@ -402,13 +402,13 @@ class TreeVec:
         x,y,z = v[i+1][2],v[i][2],v[j][2]
         if j <= i-1:
             new_v = v[0:j]+[v[i]]+v[j:i]+v[i+1:]
-            self.__hop_update_dist(new_v,i+1,j+1,x,y,z)        
+            self.__hop_update_dist(new_v,i+1,j+1,x,y,z)
         elif j > i+1:
             new_v = v[0:i]+v[i+1:j]+[v[i]]+v[j:]
             self.__hop_update_dist(new_v,i,j,x,y,z)
 
         return TreeVec(treevec_vec=new_v)
-        
+
     def __hop_inplace(self, i, j):
         """
         Modify self.vector by a hop (i,j)
@@ -447,7 +447,7 @@ class TreeVec:
 
     def _compute_leaves_positions(self):
         """
-        Computes a dictionary leafpos that records he position in the 
+        Computes a dictionary leafpos that records he position in the
         vector of the second occurrence of each label
         """
         v = self.vector
@@ -489,7 +489,7 @@ class TreeVec:
                 k = leafpos[moved_node[0]-1]
                 ngb_size += self._compute_hops_range(i, k, size=True)
         return ngb_size
-        
+
     def hop_neighbourhood(self, export_list=False):
         """
         Compute the hop neighbourhood of a tree
@@ -497,7 +497,7 @@ class TreeVec:
         if export_list is False: list(TreeVec)
         else: list((int,int)), list of HOP defining the neighbourhood
         """
-        leafpos = self._compute_leaves_positions()        
+        leafpos = self._compute_leaves_positions()
         ngb = []
         for i in range(1,len(self.vector)):
             moved_node = self.vector[i]
@@ -508,7 +508,7 @@ class TreeVec:
                     self.hop(i,j, inplace=False) for j in range_j
                 ]
         return ngb
-    
+
     def random_hop(self, rng, inplace=False):
         """
         Computes a new TreeVec representing a tree differing from self by a single random hop
@@ -532,14 +532,14 @@ class TreeVec:
                 k = leafpos[candidate_moved_node[0]-1]
                 range_j = list(self._compute_hops_range(i, k, size=False))
                 nb_possible_hops = len(range_j)
-                if  nb_possible_hops >= hop_rank:                    
+                if  nb_possible_hops >= hop_rank:
                     j = range_j[hop_rank-1]
                     return self.hop(i, j, inplace=inplace)
                 else:
                     nb_hops += nb_possible_hops
                     hop_rank -= nb_possible_hops
 
-    # Hop-similarity related functions    
+    # Hop-similarity related functions
 
     def hop_similarity(self, t2, compute_seq=False):
         """
@@ -554,11 +554,11 @@ class TreeVec:
         - compute_seq=True: list((int,bool)) list of (integers,True if leaf)
           encoding the LCS between v1 and v2
         """
-        
+
         def __relabel_segment(segment1, segment2):
             """
-            Relabel the labels of segment1 increasingly from 0 
-            and the labels of segment2 according to the relabeling of 
+            Relabel the labels of segment1 increasingly from 0
+            and the labels of segment2 according to the relabeling of
             segment1, excluding labels not present in segment1
             """
             # map1[x] = position of label x in segment1
@@ -570,7 +570,7 @@ class TreeVec:
                 if segment2[i2] in map1.keys():
                     relabeled_segment2.append(map1[segment2[i2]])
             return relabeled_segment2
-        
+
         v1,v2 = self.vector,t2.vector
         n = int(len(v1)/2)
         second_occ_order = [
@@ -599,10 +599,10 @@ class TreeVec:
             # Checking that both segments are non-empty (otherwise, no LCS)
             if (b1_end>=b1_start) and (b2_end>=b2_start):
                 # Segments of v1 and v2 to consider
-                __segment1 = [v1[k][0] for k in range(b1_start, b1_end+1)] 
-                __segment2 = [v2[k][0] for k in range(b2_start, b2_end+1)] 
+                __segment1 = [v1[k][0] for k in range(b1_start, b1_end+1)]
+                __segment2 = [v2[k][0] for k in range(b2_start, b2_end+1)]
                 # Relabeling __segment2 according to __map1,
-                # excluding labels not in __segment1            
+                # excluding labels not in __segment1
                 segment2 = __relabel_segment(__segment1, __segment2)
                 # Computing an LIS in segment2
                 if compute_seq: lcs_seq += [
@@ -672,7 +672,7 @@ def get_nb_taxa(in_TreeVec_tree):
 
 def random_leaves_order(in_TreeVec_file, nb_orders=1, in_seed=0, out_file_prefix="leaves_order"):
     """
-    Generates nb_orders random leaves orders and write them in files 
+    Generates nb_orders random leaves orders and write them in files
     {out_prefix_file}_{nb order}.txt
     """
     _,_,idx2leaf = read_TreeVec_file(in_TreeVec_file)

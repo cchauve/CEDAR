@@ -11,14 +11,14 @@ __maintainer__ = "Cedric Chauve"
 __email__ = "cedric.chauve@sfu.ca"
 __status__ = "Release"
 
-from utils import (
+from cedar.utils import (
     __read_file,
     __write_file
 )
-from LeavesOrder import (
+from cedar.LeavesOrder import (
     read_leaves_order_file
 )
-from TreeVec import (
+from cedar.TreeVec import (
     TreeVec,
     read_TreeVec_file,
     write_TreeVec_file
@@ -33,7 +33,7 @@ def read_Newick_file(in_Newick_file):
         else:
             Newick_trees.append(tree)
     return Newick_trees
-            
+
 def convert_Newick2TreeVec(in_Newick_file, out_TreeVec_file, leaves_order_file=None):
     """
     Converts the trees in in_Newick_file into TreeVec strings written in out_TreeVec_file

@@ -19,10 +19,6 @@ import subprocess
 import sys
 from pathlib import PurePosixPath
 
-from TreeVec import (
-    TreeVec
-)
-
 # Test if the current platform is Windows or not
 IS_WINDOWS = sys.platform.startswith("win")
 # Regex for a negative float

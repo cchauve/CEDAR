@@ -1,0 +1,36 @@
+[project]
+name = "cedar"
+version = "1.0.0"
+authors = [
+  { name="Cedric Chauve", email="cedric.chauve@sfu.ca" },
+]
+description = "Python package for a vector representation of phylogenetic trees"
+readme = "README.md"
+license = "LGPL-3.0-or-later"
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy",
+    "ete3",
+    "six",
+    "legacy-cgi",
+    "biopython"
+]
+
+[project.urls]
+Homepage = "https://github.com/cchauve/CEDAR"
+Issues = "https://github.com/cchauve/CEDAR/issues"
+
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cedar"]
+
+[project.scripts]
+cedar = 'cedar.CEDAR:main'

@@ -11,16 +11,15 @@ __maintainer__ = "Cedric Chauve"
 __email__ = "cedric.chauve@sfu.ca"
 __status__ = "Release"
 
-import argparse
 import numpy as np
 
-from Newick import (
+from cedar.Newick import (
     read_Newick_file
 )
-from LeavesOrder import (
+from cedar.LeavesOrder import (
     order2str
 )
-from TreeVec import (
+from cedar.TreeVec import (
     TreeVec,
     get_nb_taxa
 )
@@ -45,7 +44,7 @@ def __hop_min_distance(in_TreeVec_tree_1, in_TreeVec_tree_2, nb_taxa):
         nb_taxa - in_TreeVec_tree_1[i].hop_similarity(
             in_TreeVec_tree_2[i], compute_seq=False
         )
-        for i in range(nb_orders)        
+        for i in range(nb_orders)
     ]
     return min(distances)
 
@@ -90,7 +89,7 @@ def __hop_distance_between(in_TreeVec_trees_1, in_TreeVec_trees_2):
     - np.array where entry [i][j] is the distance between trees i from list 1 and j from list 2 (0-base index)
     """
     nb_trees = len(in_TreeVec_trees_1.keys())
-    nb_taxa = get_nb_taxa(in_TreeVec_trees_1[0][0])    
+    nb_taxa = get_nb_taxa(in_TreeVec_trees_1[0][0])
     distances = np.zeros([nb_trees, nb_trees])
     for i in range(0,nb_trees-1):
         tree_1 = in_TreeVec_trees_1[i]
@@ -112,7 +111,7 @@ def _GelmanRubin(in_TreeVec_trees_1, in_TreeVec_trees_2):
     - in_TreeVec_trees_?[i] contains encoding of the same tree with different random leaves orders
     - in_TreeVec_trees_?[i1][j] and in_TreeVec_trees_?[i2][j] are encoded with the same leaves order
     Output:
-    - dict(c: dict(i: float) c in [1,2]): entry[c][i] = GelmanRubin value for tree i in chain c  
+    - dict(c: dict(i: float) c in [1,2]): entry[c][i] = GelmanRubin value for tree i in chain c
     """
     nb_trees = len(in_TreeVec_trees_1.keys())
     in_trees = {1: in_TreeVec_trees_1, 2: in_TreeVec_trees_2}
@@ -120,7 +119,7 @@ def _GelmanRubin(in_TreeVec_trees_1, in_TreeVec_trees_2):
     GR =  {c: np.zeros(nb_trees) for c in [1,2]}
     for c1 in [1,2]:
         # -- Computing the needed distances
-        # squared distances within chain c1 
+        # squared distances within chain c1
         squared_distances_within = np.square(__hop_distance_within(in_trees[c1]))
         # squared distances between chain c1 (index 1) and chain c2 (index 2)
         if c1 == 1:
@@ -207,7 +206,7 @@ def GelmanRubin(
         i = 0
         for order_str in leaves_orders:
             _out_file.write(f"{random_seed}\t{i}\t{order_str}\n")
-            i += 1    
+            i += 1
     with open(out_gr_file, "w") as _out_file:
         _out_file.write("index\tchain1\tchain2\n")
         for i in range(nb_trees):

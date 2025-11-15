@@ -12,14 +12,13 @@ __email__ = "cedric.chauve@sfu.ca"
 __status__ = "Release"
 
 
-from utils import (
+from cedar.utils import (
     __write_file
 )
-from LeavesOrder import (
+from cedar.LeavesOrder import (
     order2str
 )
-from TreeVec import (
-    TreeVec,
+from cedar.TreeVec import (
     read_TreeVec_file,
     write_TreeVec_file,
 )

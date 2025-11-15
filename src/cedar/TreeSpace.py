@@ -11,15 +11,14 @@ __email__ = "cedric.chauve@sfu.ca"
 __status__ = "Release"
 
 import os
-import argparse
 import numpy as np
 from Bio import SeqIO
 from ete3 import Tree
 
-from _raxml import (
+from cedar._raxml import (
     raxml_loss
 )
-from TreeVec import (
+from cedar.TreeVec import (
     TreeVec
 )
 
@@ -44,7 +43,7 @@ def _create_random_tree(leaves):
     - leaves (list(str)): List of leaves labels
     Output:
     - TreeVec: TeeVec object
-    """    
+    """
     tree_aux = Tree()
     nb_leaves = len(leaves)
     tree_aux.populate(nb_leaves, names_library=leaves)
@@ -54,7 +53,7 @@ def _create_random_tree(leaves):
 def _clean_tree(tree_folder_path, tree_file, clean_tree):
     _tree_file = os.path.join(tree_folder_path, tree_file)
     if clean_tree and os.path.exists(_tree_file):
-        os.remove(_tree_file)    
+        os.remove(_tree_file)
 
 def _neighborhood_ML_scores(
         current_tree,

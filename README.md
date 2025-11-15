@@ -4,7 +4,7 @@ CEDAR is a program aimed at manipulating rooted phylogenetic trees encoded as ve
 
 **WARNING.** CEDAR is still in development and comes with no warranty.
 
-CEDAR can be used in command line (described below) or wihin python progams using the class `TreeVec` implemented in the file [TreeVec.py](src/TreeVec.py).
+CEDAR can be used in command line (described below) or wihin python progams using the class `TreeVec` implemented in the file [TreeVec.py](src/cedar/TreeVec.py).
 
 *Dependencies:* <a href="https://numpy.org/">numpy</a> and <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a>; <a href="https://github.com/amkozlov/raxml-ng">RAxML-NG</a> for the hill-climbing tree space exploration heuristic.
 
@@ -15,6 +15,18 @@ The folder [experiments](experiments) contains the code to reproduce the experim
 The folder [experiments_hc](experiments_hc) contains the code to reproduce the experiments using the hill-climbing tree space exploration heuristic implemented in CEDAR.  
 
 The folder [experiments_gr](experiments_gr) contains the code to reproduce the experiments using the Gelman-Rubin MCMC convergence statstics implemented in CEDAR.
+
+## Installation
+
+This package can be installed via `pip`. (Missing a released .whl for this 
+atm, then pip install https://github.com/cchauve/CEDAR/releases/download/...
+/*.whl)
+
+To build from source, you have to first clone the repository.
+For an installation its enough to run `pip install .` after cloning.
+
+You can build a `.whl` via `python -m build` (requires `build` package).
+The wheel can then be installed via `pip install dist/*.whl`.
 
 ## Vector encoding of phylogenetic trees
 
@@ -54,7 +66,7 @@ corresponding to vectors $(1,2,3,1,4,2,3,4)$ and $(1,3,2,1,4,2,3,4)$.
 
 ## Command-line usage
 
-The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the following tasks:
+The command-line script is [CEDAR.py](src/cedar/CEDAR.py), and allows to perform the following tasks:
 -  Converting trees written in Newick format into the CEDAR format:
    ```
    python src/CEDAR.py fromNewick --input_file Newick_file --output_file CEDAR_file [--order_file order]
@@ -172,7 +184,7 @@ The command-line script is [CEDAR.py](src/CEDAR.py), and allows to perform the f
 
 ## Class TreeVec
 
-The python class `TreeVec` is implemented in the file  [TreeVec.py](src/TreeVec.py). 
+The python class `TreeVec` is implemented in the file  [TreeVec.py](src/cedar/TreeVec.py). 
 A `TreeVec` object, that encodes a rooted phylogenetic tree as a vector, can be instantiated from
 - a Newick string, expected to be in format 1, or
 - an <a href="http://etetoolkit.org/docs/latest/index.html">ete3</a> `Tree` object, or
